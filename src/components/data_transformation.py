@@ -24,7 +24,7 @@ class DataTransformation:
 
     def get_data_transformer_object(self):
         '''
-        This function si responsible for data trnasformation
+        This function is responsible for data trnasformation
         
         '''
         try:
@@ -53,9 +53,7 @@ class DataTransformation:
 
                 steps=[
                 ("imputer",SimpleImputer(strategy="most_frequent")),
-                ("one_hot_encoder",OneHotEncoder(handle_unknown="ignore")),
-                ("scaler",StandardScaler(with_mean=False))
-                ]
+                ("one_hot_encoder",OneHotEncoder(handle_unknown="ignore"))]
 
             )
 
@@ -105,10 +103,8 @@ class DataTransformation:
             input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
 
-            train_arr = np.c_[
-                input_feature_train_arr, np.array(target_feature_train_df).reshape(1,-1)
-            ]
-            test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df).reshape(1,-1)]
+            train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
+            test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
 
             logging.info(f"Saved preprocessing object.")
 
