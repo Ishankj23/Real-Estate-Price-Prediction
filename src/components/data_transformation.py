@@ -28,7 +28,7 @@ class DataTransformation:
         
         '''
         try:
-            numerical_columns = ["Property Size (sq.m)", "Bedrooms", "Latitude_Project", "Longitude_Project"]
+            numerical_columns = ["Property Size (sq.m)", "Bedrooms"]
             categorical_columns = [
                 "Transaction Type",
                 "Area",
@@ -37,7 +37,6 @@ class DataTransformation:
                 "Nearest Metro",
                 "Nearest Mall",
                 "Nearest Landmark",
-                "Project",
                 "parking"
             ]
 
@@ -53,7 +52,7 @@ class DataTransformation:
 
                 steps=[
                 ("imputer",SimpleImputer(strategy="most_frequent")),
-                ("one_hot_encoder",OneHotEncoder(handle_unknown="ignore"))]
+                ("one_hot_encoder",OneHotEncoder(handle_unknown="ignore", sparse_output=False))]
 
             )
 
@@ -88,7 +87,7 @@ class DataTransformation:
             preprocessing_obj=self.get_data_transformer_object()
 
             target_column_name="Amount"
-            numerical_columns = ["Property Size (sq.m)", "Bedrooms", "Latitude_Project", "Longitude_Project"]
+            numerical_columns = ["Property Size (sq.m)", "Bedrooms"]
 
             input_feature_train_df=train_df.drop(columns=[target_column_name],axis=1)
             target_feature_train_df=train_df[target_column_name]
@@ -103,8 +102,15 @@ class DataTransformation:
             input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
 
-            train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
-            test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
+            
+            train_arr = pd.concat(
+                [pd.DataFrame(input_feature_train_arr), target_feature_train_df.reset_index(drop=True)], axis=1
+            ).to_numpy()
+
+# Test data
+            test_arr = pd.concat(
+                [pd.DataFrame(input_feature_test_arr), target_feature_test_df.reset_index(drop=True)], axis=1
+)           .to_numpy()
 
             logging.info(f"Saved preprocessing object.")
 
