@@ -37,6 +37,7 @@ class ModelTrainer:
                 test_array[:,:-1],
                 test_array[:,-1],
             )
+
             models = {
                 "Random Forest": RandomForestRegressor(),
                 "Decision Tree": DecisionTreeRegressor(),
@@ -49,6 +50,10 @@ class ModelTrainer:
 
             model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,
                                              models=models,)
+            
+            logging.info(f"Shape of X_train: {X_train.shape}, Shape of y_train: {y_train.shape}")
+            logging.info(f"Shape of X_test: {X_test.shape}, Shape of y_test: {y_test.shape}")
+            logging.info(f"First 10 values in y_train: {y_train[:10]}")
             
             ## To get best model score from dict
             best_model_score = max(sorted(model_report.values()))
@@ -69,10 +74,13 @@ class ModelTrainer:
                 obj=best_model
             )
 
-            predicted=best_model.predict(X_test)
+            predicted_test=best_model.predict(X_test)
+            predicted_train=best_model.predict(X_train)
+            
 
-            r2_square = r2_score(y_test, predicted)
-            return r2_square
+            r2_test = r2_score(y_test, predicted_test)
+            r2_train = r2_score(y_train, predicted_train)
+            return r2_test, r2_train
             
 
 

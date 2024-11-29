@@ -24,20 +24,21 @@ class DataTransformation:
 
     def get_data_transformer_object(self):
         '''
-        This function is responsible for data trnasformation
+        This function is responsible for data transformation
         
         '''
         try:
-            numerical_columns = ["Property Size (sq.m)", "Bedrooms"]
+            numerical_columns = ["Property_Size", "Bedrooms"]
             categorical_columns = [
-                "Transaction Type",
+                "Transaction_Type",
                 "Area",
-                "Property Type",
-                "Property Sub Type",
-                "Nearest Metro",
-                "Nearest Mall",
-                "Nearest Landmark",
-                "parking"
+                "Property_Type",
+                "Property_Sub_Type",
+                "Nearest_Metro",
+                "Nearest_Mall",
+                "Nearest_Landmark",
+                "parking",
+                "Registration_type"
             ]
 
             num_pipeline= Pipeline(
@@ -52,7 +53,8 @@ class DataTransformation:
 
                 steps=[
                 ("imputer",SimpleImputer(strategy="most_frequent")),
-                ("one_hot_encoder",OneHotEncoder(handle_unknown="ignore", sparse_output=False))]
+                ("one_hot_encoder",OneHotEncoder(handle_unknown="ignore", sparse_output=False)),
+                ("scaler", StandardScaler())]
 
             )
 
@@ -87,10 +89,13 @@ class DataTransformation:
             preprocessing_obj=self.get_data_transformer_object()
 
             target_column_name="Amount"
-            numerical_columns = ["Property Size (sq.m)", "Bedrooms"]
+            numerical_columns = ["Property_Size_sq.m", "Bedrooms"]
 
             input_feature_train_df=train_df.drop(columns=[target_column_name],axis=1)
             target_feature_train_df=train_df[target_column_name]
+
+            logging.info("Shape of target_feature_train_df: %s", target_feature_train_df.shape)
+            logging.info("First 10 values in target_feature_train_df: %s", target_feature_train_df.head(10).to_string())
 
             input_feature_test_df=test_df.drop(columns=[target_column_name],axis=1)
             target_feature_test_df=test_df[target_column_name]

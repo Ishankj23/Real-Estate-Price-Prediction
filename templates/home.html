@@ -1,0 +1,199 @@
+<html>
+<body>
+    <div class="login">
+   
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <h1>
+            <legend>Real Estate Price Prediction</legend>
+        </h1>
+        <div class="mb-3">
+            <label class="form-label">Transaction_Type</label>
+            <select class="form-control" name="Transaction_Type" placeholder="Enter the Transaction Type" required>
+                <option class="placeholder" selected disabled value="">Select Transaction Type</option>
+                <option value="sales">
+                    sales
+                </option>
+                <option value="Mortgage">
+                    Mortgage
+                </option>
+                <option value="Gifts">
+                    Gifts
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Registration_Type</label>
+            <select class="form-control" name="Registration_Type" placeholder="Enter the Registration Type" required>
+                <option class="placeholder" selected disabled value="">Select Registration Type</option>
+                <option value="Off-Plan">
+                    Off-Plan
+                </option>
+                <option value="Ready">
+                    Ready
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Area</label>
+            <select class="form-control" name="Area"
+                placeholder="Enter Area" required>
+                <option class="placeholder" selected disabled value="">Select Area</option>
+                <option value="JUMEIRAH VILLAGE CIRCLE">
+                    JUMEIRAH VILLAGE CIRCLE
+                </option>
+                <option value="DUBAI CREEK HARBOUR">
+                    DUBAI CREEK HARBOUR
+                </option>
+                <option value="BUSINESS BAY">
+                    BUSINESS BAY
+                </option>
+                <option value="BURJ KHALIFA">
+                    BURJ KHALIFA
+                </option>
+                <option value="DUBAI MARINA">
+                    DUBAI MARINA
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Property_Type</label>
+            <select class="form-control" name="Property_Type" placeholder="Enter Property Type" required>
+                <option class="placeholder" selected disabled value="">Select Property Type</option>
+                <option value="Unit">
+                    Unit
+                </option>
+                <option value="Building">
+                    Building
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Property_Sub_Type</label>
+            <select class="form-control" name="Property_Sub_Type" placeholder="Enter Property Sub Type"
+                required>
+                <option class="placeholder" selected disabled value="">Select Property Sub Type</option>
+                <option value="Flat">
+                    Flat
+                </option>
+                <option value="Villa">
+                    Villa
+                </option>
+                <option value="Hotel Apartment">
+                    Hotel Apartment
+                </option>
+                <option value="Hotel Rooms">
+                    Hotel Rooms
+                </option>
+                <option value="Stacked Townhouses">
+                    Stacked Houses
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Property_Size</label>
+            <input class="form-control" type="number" step="0.01" name="Property_Size"
+                placeholder="Enter your Reading score" min='0' max='10000' />
+        <div class="mb-3">
+            <label class="form-label">Bedrooms</label>
+            <select class="form-control" name="Bedrooms" placeholder="Enter Bedrooms"
+                required>
+                <option class="placeholder" selected disabled value="">Select Bedrooms</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">parking</label>
+            <select class="form-control" name="parking" placeholder="Enter parking"
+                required>
+                <option class="placeholder" selected disabled value="">Select parking</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nearest_Metro</label>
+            <select class="form-control" name="Nearest_Metro" placeholder="Nearest_Metro"
+                required>
+                <option class="placeholder" selected disabled value="">Select Nearest_Metro</option>
+                <option value="Buj Khalifa Dubai Mall Metro Station">Buj Khalifa Dubai Mall Metro Station</option>
+                <option value="Dubai Internet City">Dubai Internet City</option>
+                <option value="Creek Metro Station">Creek Metro Station</option>
+                <option value="Business Bay Metro Station">Business Bay Metro Station</option>
+                <option value="Nakheel Metro Station">Nakheel Metro Station</option>
+                <option value="First Abu Dhabi Bank Metro Station">First Abu Dhabi Bank Metro Station</option>
+                <option value="Jumeirah Lakes Towers">Jumeirah Lakes Towers</option>
+                <option value="Sharaf Dg Metro Station">Sharaf Dg Metro Station</option>
+                <option value="Rashidiya Metro Station">Rashidiya Metro Station</option>
+                <option value="Damac Properties">Damac Properties</option>
+                <option value="Al Jafiliya Metro Station">Al Jafiliya Metro Station</option>
+                <option value="Jumeirah Beach Resdency">Jumeirah Beach Resdency</option>
+                <option value="Ibn Battuta Metro Station">Ibn Battuta Metro Station</option>
+                <option value="Mina Seyahi">Mina Seyahi</option>
+                <option value="Palm Jumeirah">Palm Jumeirah</option>
+                <option value="Jumeirah Beach Residency">Jumeirah Beach Residency</option>
+                <option value="Noor Bank Metro Station">Noor Bank Metro Station</option>
+                <option value="Marina Towers">Marina Towers</option>
+                <option value="Harbour Tower">Harbour Tower</option>
+                <option value="Al Sufouh">Al Sufouh</option>
+                <option value="Al Ghubaiba Metro Station">Al Ghubaiba Metro Station</option>
+                <option value="ENERGY Metro Station">ENERGY Metro Station</option>
+                <option value="Financial Centre">Financial Centre</option>
+                <option value="Trade Centre Metro Station">Trade Centre Metro Station</option>
+                <option value="Marina Mall Metro Station">Marina Mall Metro Station</option>
+                <option value="Healthcare City Metro Station">Healthcare City Metro Station</option>
+                <option value="Al Jadaf Metro Station">Al Jadaf Metro Station</option>
+                <option value="Dubai Marina">Dubai Marina</option>
+                <option value="Knowledge Village">Knowledge Village</option>
+                <option value="UAE Exchange Metro Station">UAE Exchange Metro Station</option>
+                <option value="DANUBE Metro Station">DANUBE Metro Station</option>
+                <option value="Airport Free Zone">Airport Free Zone</option>
+                <option value="Emirates Towers Metro Station">Emirates Towers Metro Station</option>    
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nearest_Mall</label>
+            <select class="form-control" name="Nearest_Mall" placeholder="Enter Nearest_Mall"
+                required>
+                <option class="placeholder" selected disabled value="">Select Nearest_Mall</option>
+                <option value="Dubai Mall">Dubai Mall</option>
+                <option value="Marina Mall">Marina Mall</option>
+                <option value="Mall of the Emirates">Mall of the Emirates</option>
+                <option value="City Centre Mirdif">City Centre Mirdif</option>
+                <option value="Ibn-e-Battuta Mall">Ibn-e-Battuta Mall</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nearest_Landmark</label>
+            <select class="form-control" name="Nearest_Landmark" placeholder="Enter Nearest_Landmark"
+                required>
+                <option class="placeholder" selected disabled value="">Select Nearest_Landmark</option>
+                <option value="Sports City Swimming Academy">Sports City Swimming Academy</option>
+                <option value="Downtown Dubai">Downtown Dubai</option>
+                <option value="Burj Al Arab">Burj Al Arab</option>
+                <option value="Dubai International Airport">Dubai International Airport</option>
+                <option value="IMG World Adventures">IMG World Adventures</option>
+                <option value="Burj Khalifa">Burj Khalifa</option>
+                <option value="Motor City">Motor City</option>
+                <option value="Dubai Cycling Course">Dubai Cycling Course</option>
+                <option value="Expo 2020 Site">Expo 2020 Site</option>
+                <option value="Global Village">Global Village</option>
+                <option value="Hamdan Sports Complex">Hamdan Sports Complex</option>
+                <option value="Al Makhtoum International Airport">Al Makhtoum International Airport</option>
+                <option value="Dubai Parks and Resorts">Dubai Parks and Resorts</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict" required />
+        </div>
+    </form>
+    <h2>
+       The  prediction is {{results}}
+    </h2>
+   <body>
+</html>
